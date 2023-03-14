@@ -1,0 +1,48 @@
+import React from "react";
+import { styles } from "../styles";
+import { motion } from "framer-motion";
+import { fadeIn, textVariant } from "../utils/motion";
+import { BallCanvas } from "./canvas";
+import { SectionLayout } from "../layout";
+import { technologies, CV } from "../constants";
+
+const Tech = () => {
+  return (
+    <>
+      <motion.div variants={textVariant()}>
+        <h2 className={styles.sectionHeadText}>Skills</h2>
+      </motion.div>
+
+      <motion.p
+        variants={fadeIn("", "", 0.1, 1)}
+        className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]"
+      >
+        I have still a lot to learn but here you can see some of the tecnologies
+        i studied.
+      </motion.p>
+      <div className="mt-24 flex flex-row flex-wrap justify-center gap-10">
+        {technologies.map((technology) => (
+          <div className="w-28 h-28 cursor-pointer" key={technology.name}>
+            <BallCanvas icon={technology.icon} />
+          </div>
+        ))}
+      </div>
+      <div className="flex justify-center mt-[100px]">
+        <a href={CV} download>
+          <button type="button" className="my-btn">
+            <p className="my-btn-stars-text">Download CV</p>
+            <div id="my-btn-container-stars">
+              <div id="my-btn-stars"></div>
+            </div>
+            <div id="my-btn-glow">
+              <div className="my-btn-circle"></div>
+              <div className="my-btn-circle"></div>
+            </div>
+          </button>
+        </a>
+      </div>
+    </>
+  );
+};
+
+export default SectionLayout(Tech, "");
