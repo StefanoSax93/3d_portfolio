@@ -38,8 +38,9 @@ const Tech = () => {
         variants={fadeIn("", "", 0.1, 1)}
         className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]"
       >
-        I have still a lot to learn but here you can see some of the tecnologies
-        i studied.
+        Here you can see the technologies I have learned by following the
+        6-month full stack developer course at Boolean Academy and continuing to
+        study as a self-taught learner.
       </motion.p>
       <div className="mt-24 flex flex-row flex-wrap justify-center gap-10">
         {technologies.map((technology) => (
