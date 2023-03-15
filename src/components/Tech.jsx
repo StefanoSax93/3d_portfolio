@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { styles } from "../styles";
 import { motion } from "framer-motion";
 import { fadeIn, textVariant } from "../utils/motion";
@@ -7,6 +7,27 @@ import { SectionLayout } from "../layout";
 import { technologies, CV } from "../constants";
 
 const Tech = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  //utilizzo lo useEffect per gestire la grandezza dell'animazione 3D quando
+  // cambia la mediaQuery
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width:700px)");
+
+    setIsMobile(mediaQuery.matches);
+
+    const handleMediaQueryChange = (e) => {
+      setIsMobile(e.matches);
+    };
+
+    mediaQuery.addEventListener("change", handleMediaQueryChange);
+
+    //cleanup function
+    return () => {
+      mediaQuery.removeEventListener("change", handleMediaQueryChange);
+    };
+  }, []);
+
   return (
     <>
       <motion.div variants={textVariant()}>
@@ -23,7 +44,12 @@ const Tech = () => {
       <div className="mt-24 flex flex-row flex-wrap justify-center gap-10">
         {technologies.map((technology) => (
           <div className="w-28 h-28 cursor-pointer" key={technology.name}>
-            <BallCanvas icon={technology.icon} />
+            {isMobile ? (
+              <img src={technology.icon} alt="" />
+            ) : (
+              <BallCanvas icon={technology.icon} />
+            )}
+            {/*  */}
           </div>
         ))}
       </div>
