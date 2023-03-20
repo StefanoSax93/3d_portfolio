@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { styles } from "../styles";
 import { navLinks } from "../constants";
@@ -10,6 +10,17 @@ import Mode from "./Mode";
 const Navbar = () => {
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
+  const linkContainerRef = useRef(null);
+  const linkListRef = useRef(null);
+
+  useEffect(() => {
+    const linkListHeight = linkListRef.current.getBoundingClientRect().height;
+    if (toggle) {
+      linkContainerRef.current.style.height = `${linkListHeight}px`;
+    } else {
+      linkContainerRef.current.style.height = "0px";
+    }
+  }, [toggle]);
 
   return (
     <nav
@@ -31,7 +42,7 @@ const Navbar = () => {
             <span className="xs:block hidden">| Web Developer</span>
           </p>
         </Link>
-        <ul className="list-none hidden md:flex flex-row gap-6">
+        <ul className="list-none hidden md:flex flex-row gap-6 items-center">
           {/* ciclo sui link */}
           {navLinks.map((link) => (
             <li
@@ -64,11 +75,12 @@ const Navbar = () => {
         )}
 
         <div
-          className={`${
-            toggle ? "flex" : "hidden"
-          } p-6 bg-tertiary md:hidden absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl`}
+          className="links-container bg-tertiary md:hidden 
+        absolute top-20 right-0 mx-4 my-2 min-w-[140px] 
+        z-10 rounded-xl"
+          ref={linkContainerRef}
         >
-          <ul className="list-none flex flex-col gap-3">
+          <ul className="list-none flex flex-col gap-3 p-6" ref={linkListRef}>
             {/* ciclo sui link */}
             {navLinks.map((link) => (
               <li

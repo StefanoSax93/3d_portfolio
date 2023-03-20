@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { styles } from "../styles";
 import { HiOutlineMoon, HiOutlineSun } from "react-icons/hi";
 
 //Funzione che se presente 'Theme' nel localStorage
@@ -25,18 +24,26 @@ const Mode = () => {
 
   return (
     <div>
-      <div className="flex gap-3 ">
+      <span className="flex gap-3 border-2 border-secondary rounded-full p-2 justify-center">
         <HiOutlineSun
-          className="cursor-pointer text-secondary hover:text-white"
+          className={`cursor-pointer ${
+            theme === "light-mode" ? "active-mode" : "text-secondary"
+          }`}
           size={24}
-          onClick={() => setTheme("light-mode")}
+          onClick={() => {
+            setTheme("light-mode");
+          }}
         ></HiOutlineSun>
         <HiOutlineMoon
-          className="cursor-pointer text-secondary hover:text-white"
+          className={`cursor-pointer ${
+            theme === "dark-mode" ? "active-mode" : "text-secondary"
+          }`}
           size={24}
-          onClick={() => setTheme("dark-mode")}
+          onClick={() => {
+            setTheme("dark-mode");
+          }}
         ></HiOutlineMoon>
-      </div>
+      </span>
     </div>
   );
 };

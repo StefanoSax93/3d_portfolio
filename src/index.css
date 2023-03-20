@@ -459,3 +459,16 @@
   align-items: center;
   justify-content: center;
 }
+
+.links-container {
+  height: 0;
+  overflow: hidden;
+}
+
+.active-mode {
+  background-color: white;
+  border-radius: 50%;
+  color: black;
+  scale: 1.2;
+  padding: 2px;
+}
