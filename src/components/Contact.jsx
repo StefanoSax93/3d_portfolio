@@ -32,7 +32,7 @@ const Contact = () => {
 
     emailjs
       .send(
-        "service_8rcunok",
+        "service_oqj2kjq",
         "template_obenzs5",
         {
           from_name: form.name,
@@ -41,7 +41,7 @@ const Contact = () => {
           to_email: "stefano.saccocci.93@gmail.com",
           message: form.message,
         },
-        "W-ynYQ-yXFd5cjVG2"
+        "Wlb5iagcaKe-9FXOe"
       )
       .then(
         () => {
@@ -149,7 +149,7 @@ const Contact = () => {
       </div>
       {compiled && !error ? (
         <Modal
-          message="Grazie per avermi contattato! Cercherò di rispondere il prima possibile"
+          message="Thank you for contacting me! I will try to reply as soon as possible."
           img={formcheck}
         />
       ) : (
@@ -158,7 +158,7 @@ const Contact = () => {
 
       {compiled && error ? (
         <Modal
-          message="Ops! Qualcosa è andato storto. Riprova per favore"
+          message="Oops! Something went wrong. Please try again."
           img={formerror}
         />
       ) : (
